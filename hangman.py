@@ -5,14 +5,14 @@ word_file = "words.txt"
 word_list = [word.strip() for word in open(word_file).readlines() if len(word) > 3]
 
 def play():
-    hangword = random.choice(word_list)
+    hangword = random.choice(word_list).upper()
     #print(hangword)
     letters_used = []
-    progress = ["_"] * len(hangword)
+    progress = [" _ "] * len(hangword)
     incorrect = 0    
     while incorrect < 7:
         
-        guess = input("Pick a Letter > ")
+        guess = input("Pick a Letter > ").upper()
         print(guess)
         
         if ''.join(progress) == hangword:
@@ -36,7 +36,7 @@ def play():
 
         elif guess not in hangword and guess not in letters_used:
             incorrect += 1
-            print("an\nThat Letter Is Not In The Word, You Have used %d Guesses Out of 7" % (incorrect))
+            print("\n\nThat Letter Is Not In The Word, You Have used %d Guesses Out of 7" % (incorrect))
             letters_used.append(guess)
             print("\nCheck The Letters and Try Again!!", ' | '.join(letters_used))
             print("\nCurrent Progress: ", ''.join(progress), '\n\n')
