@@ -10,7 +10,7 @@ def play():
     letters_used = []
     progress = ["_"] * len(hangword)
     incorrect = 0    
-    while incorrect < 1:
+    while incorrect < 7:
         
         guess = input("Pick a Letter > ")
         print(guess)
