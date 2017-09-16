@@ -2,49 +2,55 @@ import sys
 import random
 
 word_file = "words.txt"
-word_list = [word.strip() for word in open(word_file).readlines() if len(word) > 6]
+word_list = [word.strip() for word in open(word_file).readlines() if len(word) > 3]
 
 def play():
 
     hangword = random.choice(word_list)
-    print(hangword.upper())
+    print(hangword)
     letters_used = []
     progress = ["_"] * len(hangword)
-    numwrong = 0    
-    while numwrong < 7:
+    incorrect = 0    
+    while incorrect < 7:
         
-        guess = input("Pick a Letter > ")
+        guess = input("Pick a Letter > ").upper()
+        print(guess)
+        
+        if ''.join(progress) == hangword:
+            break
             
-        if guess in hangword and guess not in letters_used:             
+        elif guess in hangword and guess not in letters_used:             
             found = [index for index, value in enumerate(hangword) if value == guess]
-            letters_used.append(guess.upper())
+            letters_used.append(guess)
             for f in found:
                 for i in range(len(progress)):                
-                    progress[f] = guess.upper()
+                    progress[f] = guess
 
+            print("\n\nNice One, '%s' Is A Correct Letter!!.." % (guess))
             print("\nCurrent Progress: ", ''.join(progress))
-            print("\nLetters Used: ", letters_used, '\n\n')
+            print("\nLetters Used: ", ' | '.join(letters_used), '\n\n')
 
         elif guess in letters_used:
-            print("\nYou Have Already Picked That Letter!!!")
-            print("\nCheck The Letters and Try Again!!", letters_used)
+            print("\n\nYou Have Already Picked That Letter!!!")
+            print("\nCheck The Letters and Try Again!!", ' | '.join(letters_used))
             print("\nCurrent Progress: ", ''.join(progress), '\n\n')
 
         elif guess not in hangword and guess not in letters_used:
-            numwrong += 1
-            print("\nThat Letter Is Not In The Word, You Have used %d Guesses Out of 7" % (numwrong))
-            letters_used.append(guess.upper())
-            print("\nCheck The Letters and Try Again!!", letters_used)
+            incorrect += 1
+            print("an\nThat Letter Is Not In The Word, You Have used %d Guesses Out of 7" % (incorrect))
+            letters_used.append(guess)
+            print("\nCheck The Letters and Try Again!!", ' | '.join(letters_used))
             print("\nCurrent Progress: ", ''.join(progress), '\n\n')
+
 
     
     if ''.join(progress) == hangword:
         print("\nCongratulations You have Saved the Hangman!!! :)")
-        print("\nYou Had %d Guesses Left" % (numwrong))
+        print("\nYou used %d Guesses" % (incorrect))
         print("\nThe Answer is: ", hangword)        
     else:
         print("\nSorry You Failed, The Hangman Is DeeD!!!")
-        print("\nThe Answer is: ", hangword.upper())   
+        print("\nThe Answer is: ", hangword)   
         print("\nGoodbye")
         quit()
 
