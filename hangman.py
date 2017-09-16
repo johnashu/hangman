@@ -5,6 +5,7 @@ word_file = "words.txt"
 word_list = [word.strip() for word in open(word_file).readlines() if len(word) > 6]
 
 def play():
+
     hangword = random.choice(word_list)
     print(hangword.upper())
     letters_used = []
