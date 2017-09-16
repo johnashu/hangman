@@ -13,7 +13,7 @@ def play():
     incorrect = 0    
     while incorrect < 7:
         
-        guess = input("Pick a Letter > ").upper()
+        guess = input("Pick a Letter > ")
         print(guess)
         
         if ''.join(progress) == hangword:
