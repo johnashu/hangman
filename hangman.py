@@ -10,39 +10,29 @@ def play():
     letters_used = []
     progress = [" _ "] * len(hangword)
     incorrect = 0    
-    while incorrect < 7:
-        
-        guess = input("Pick a Letter > ").upper()
-        print(guess)
-        
+    while incorrect < 7:        
+        guess = input("Pick a Letter > ").upper()      
         if ''.join(progress) == hangword:
-            break
-            
+            break            
         elif guess in hangword and guess not in letters_used:             
             found = [index for index, value in enumerate(hangword) if value == guess]
             letters_used.append(guess)
             for f in found:
                 for i in range(len(progress)):                
                     progress[f] = guess
-
             print("\n\nNice One, '%s' Is A Correct Letter!!.." % (guess))
             print("\nCurrent Progress: ", ''.join(progress))
             print("\nLetters Used: ", ' | '.join(letters_used), '\n\n')
-
         elif guess in letters_used:
             print("\n\nYou Have Already Picked That Letter!!!")
             print("\nCheck The Letters and Try Again!!", ' | '.join(letters_used))
             print("\nCurrent Progress: ", ''.join(progress), '\n\n')
-
         elif guess not in hangword and guess not in letters_used:
             incorrect += 1
             print("\n\nThat Letter Is Not In The Word, You Have used %d Guesses Out of 7" % (incorrect))
             letters_used.append(guess)
             print("\nCheck The Letters and Try Again!!", ' | '.join(letters_used))
-            print("\nCurrent Progress: ", ''.join(progress), '\n\n')
-
-
-    
+            print("\nCurrent Progress: ", ''.join(progress), '\n\n')    
     if ''.join(progress) == hangword:
         print("\nCongratulations You have Saved the Hangman!!! :)")
         print("\nYou used %d Guesses" % (incorrect))
@@ -60,7 +50,5 @@ def play():
         if new_game == 'y':
             play()
         else:
-            quit()
-    
-    
+            quit()       
 play()
