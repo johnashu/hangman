@@ -5,13 +5,12 @@ word_file = "words.txt"
 word_list = [word.strip() for word in open(word_file).readlines() if len(word) > 3]
 
 def play():
-
     hangword = random.choice(word_list)
-    print(hangword)
+    #print(hangword)
     letters_used = []
     progress = ["_"] * len(hangword)
     incorrect = 0    
-    while incorrect < 7:
+    while incorrect < 1:
         
         guess = input("Pick a Letter > ")
         print(guess)
@@ -47,11 +46,21 @@ def play():
     if ''.join(progress) == hangword:
         print("\nCongratulations You have Saved the Hangman!!! :)")
         print("\nYou used %d Guesses" % (incorrect))
-        print("\nThe Answer is: ", hangword)        
+        print("\nThe Answer is: ", hangword)  
+        new_game = input("Would You Like To Play Again? y/n?: ")   
+        if new_game == 'y':
+            play()
+        else:
+            quit()
     else:
         print("\nSorry You Failed, The Hangman Is DeeD!!!")
         print("\nThe Answer is: ", hangword)   
         print("\nGoodbye")
-        quit()
-
+        new_game = input("Would You Like To Play Again? y/n?: ")   
+        if new_game == 'y':
+            play()
+        else:
+            quit()
+    
+    
 play()
