@@ -22,19 +22,19 @@ def play():
                     progress[f] = guess.upper()
 
             print("\nCurrent Progress: ", ''.join(progress))
-            print("\nLetters Used: ", letters_used)
+            print("\nLetters Used: ", letters_used, '\n\n')
 
         elif guess in letters_used:
             print("\nYou Have Already Picked That Letter!!!")
             print("\nCheck The Letters and Try Again!!", letters_used)
-            print("\nCurrent Progress: ", ''.join(progress))
+            print("\nCurrent Progress: ", ''.join(progress), '\n\n')
 
         elif guess not in hangword and guess not in letters_used:
             numwrong += 1
             print("\nThat Letter Is Not In The Word, You Have used %d Guesses Out of 7" % (numwrong))
             letters_used.append(guess)
             print("\nCheck The Letters and Try Again!!", letters_used)
-            print("\nCurrent Progress: ", ''.join(progress))
+            print("\nCurrent Progress: ", ''.join(progress), '\n\n')
 
 
             
