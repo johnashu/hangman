@@ -1,25 +1,3 @@
-import sys
-import random
-
-word_file = "words.txt"
-word_list = [word.strip() for word in open(word_file).readlines() if len(word) > 6]
-
-def play():
-    hangword = random.choice(word_list)
-    print(hangword.upper())
-    letters_used = []
-    progress = ["_"] * len(hangword)
-    numwrong = 0    
-    while numwrong < 7:
-        
-        guess = input("Pick a Letter > ")
-            
-        if guess in hangword and guess not in letters_used:             
-            found = [index for index, value in enumerate(hangword) if value == guess]
-            letters_used.append(guess.upper())
-            for f in found:
-                for i in range(len(progress)):                
-                    progress[f] = guess.upper()
 from urllib.request import urlopen
 import sys
 import random
@@ -58,9 +36,6 @@ def play():
             letters_used.append(guess)
             print("\nCheck The Letters and Try Again!!", letters_used)
             print("\nCurrent Progress: ", ''.join(progress))
-        
-        elif len(progress) == len(hangword):
-            break
 
 
             
@@ -75,4 +50,3 @@ def play():
         quit()
 
 play()
-          
